@@ -71,9 +71,9 @@ export function LightComparison() {
           ref={containerRef}
           className="relative w-full max-w-5xl mx-auto rounded-xl overflow-hidden select-none cursor-ew-resize border border-border bg-black"
           style={{ aspectRatio: '1024 / 571' }}
-          onMouseDown={() => setIsOn(true) || setIsDragging(true)}
+          onMouseDown={() => { setIsOn(true); setIsDragging(true); }}
           onMouseMove={handleMouseMove}
-          onTouchStart={() => setIsOn(true) || setIsDragging(true)}
+          onTouchStart={() => { setIsOn(true); setIsDragging(true); }}
           onTouchMove={handleTouchMove}
           tabIndex={0}
           onKeyDown={handleKeyDown}
