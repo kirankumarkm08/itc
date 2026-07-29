@@ -104,7 +104,8 @@ export function ExplodedScrollExperience() {
             fallbackSrc="/product/led-work-light/technical-exploded.jpg"
           />
           {/* Dark gradient overlay for text readability on left */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/40 to-transparent pointer-events-none lg:w-1/2" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent pointer-events-none md:w-3/5" />
+          <div className="absolute inset-0 bg-black/30 pointer-events-none md:hidden" />
         </div>
 
         {/* Scrolling Text Content Layer */}

@@ -122,7 +122,7 @@ export function ProductHero() {
     <section 
       id="overview"
       ref={containerRef} 
-      className="relative w-full h-screen min-h-[600px] overflow-hidden bg-background flex items-center perspective-[1000px]"
+      className="relative w-full h-[100svh] min-h-[600px] overflow-hidden bg-black flex items-center perspective-[1000px]"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
@@ -137,26 +137,25 @@ export function ProductHero() {
           className="object-cover object-center transform-gpu origin-center"
           sizes="100vw"
         />
-        {/* Dark overlay for text readability, mostly on the left */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent lg:w-2/3 pointer-events-none" />
-        <div className="absolute inset-0 bg-black/20 pointer-events-none sm:hidden" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-transparent md:w-3/4 pointer-events-none" />
+        <div className="absolute inset-0 bg-black/30 pointer-events-none md:hidden" />
       </div>
 
       <HeroHotspots />
 
       {/* Content */}
-      <div ref={contentRef} className="container relative z-20 mx-auto px-4 md:px-6 pt-20">
-        <div className="max-w-xl text-white">
+      <div ref={contentRef} className="section-container relative z-20 pt-20">
+        <div className="max-w-xl text-foreground">
           <p className="hero-description text-primary font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-4">
-            ITC Lights & Light Mounts
+            ITC Quick Attach LED Work Light
           </p>
           
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight leading-[0.9] mb-6 overflow-hidden">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl mb-6 overflow-hidden">
             <div className="overflow-hidden pb-2"><div className="hero-headline-line">Light the work.</div></div>
             <div className="overflow-hidden pb-2"><div className="hero-headline-line text-muted-foreground">Not just the way.</div></div>
           </h1>
           
-          <p className="hero-description text-lg md:text-xl text-muted-foreground mb-8 max-w-md leading-relaxed">
+          <p className="hero-description text-lg md:text-xl text-muted-foreground mb-8 max-w-md">
             A rugged LED work-light and mounting system designed for tractor ROPS installations, low-light jobs, and demanding outdoor conditions.
           </p>
           
@@ -164,9 +163,12 @@ export function ProductHero() {
             <button className="hero-cta bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-sm font-bold uppercase tracking-wider transition-colors flex items-center justify-center">
               Add to Cart
             </button>
-            <button className="hero-cta bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/10 text-white px-8 py-4 rounded-sm font-bold uppercase tracking-wider transition-colors flex items-center justify-center">
-              Explore the Product
-            </button>
+            <a href="#installation" className="hero-cta bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/10 text-white px-8 py-4 rounded-sm font-bold uppercase tracking-wider transition-colors flex items-center justify-center">
+              Check Compatibility
+            </a>
+            <a href="#specifications" className="hero-cta text-muted-foreground hover:text-white px-4 py-4 font-bold uppercase tracking-wider transition-colors flex items-center justify-center text-sm">
+              View Specs
+            </a>
           </div>
 
           <ul className="hero-description flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground uppercase tracking-wider font-semibold">

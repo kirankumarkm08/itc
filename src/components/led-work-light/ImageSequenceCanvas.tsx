@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
+import Image from "next/image";
 import { useImageSequence } from "@/hooks/useImageSequence";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { cn } from "@/lib/utils";
@@ -22,15 +23,20 @@ export function ImageSequenceCanvas({
 }: ImageSequenceCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches
+  );
   const reducedMotion = useReducedMotion();
   
-  // Choose the right frame source based on device width (run once on mount)
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    const mq = window.matchMedia("(max-width: 767px)");
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsMobile(e.matches);
+    };
+
+    mq.addEventListener("change", handleChange);
+    return () => mq.removeEventListener("change", handleChange);
   }, []);
 
   const activeGetFrameSrc = isMobile && mobileGetFrameSrc ? mobileGetFrameSrc : getFrameSrc;
@@ -73,8 +79,6 @@ export function ImageSequenceCanvas({
     }
 
     if (frameToRender) {
-      let animationFrameId: number;
-      
       const render = () => {
         // Handle DPI scaling
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -110,8 +114,8 @@ export function ImageSequenceCanvas({
         ctx.drawImage(frameToRender, offsetX, offsetY, drawWidth, drawHeight);
       };
 
-      animationFrameId = requestAnimationFrame(render);
-      return () => cancelAnimationFrame(animationFrameId);
+      const id = requestAnimationFrame(render);
+      return () => cancelAnimationFrame(id);
     }
   }, [progress, frameCount, framesRef, reducedMotion]);
 
@@ -131,10 +135,12 @@ export function ImageSequenceCanvas({
   if (reducedMotion) {
     return (
       <div className="w-full h-full flex items-center justify-center bg-black">
-        <img 
+        <Image 
           src={fallbackSrc} 
           alt="Exploded view fallback" 
-          className="w-full h-full object-contain"
+          fill
+          className="object-contain"
+          sizes="100vw"
         />
       </div>
     );

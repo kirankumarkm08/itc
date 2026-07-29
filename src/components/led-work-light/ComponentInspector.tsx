@@ -19,14 +19,20 @@ const componentZones = {
 
 export function ComponentInspector() {
   const [activeId, setActiveId] = useState<string | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches
+  );
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    const mq = window.matchMedia("(max-width: 767px)");
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsMobile(e.matches);
+    };
+
+    mq.addEventListener("change", handleChange);
+    return () => mq.removeEventListener("change", handleChange);
   }, []);
 
   useEffect(() => {
@@ -40,9 +46,9 @@ export function ComponentInspector() {
   const activeComponent = explodedComponents.find(c => c.id === activeId);
 
   return (
-    <section className="bg-black py-24 md:py-32 relative overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6 mb-16 relative z-20">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-tight text-white mb-4">
+    <section className="bg-black section-padding relative overflow-hidden">
+      <div className="section-container mb-16 relative z-20">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl mb-4">
           Engineered from the inside out
         </h2>
         <p className="text-muted-foreground text-lg max-w-xl">

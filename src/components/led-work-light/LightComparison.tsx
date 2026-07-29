@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, MouseEvent as ReactMouseEvent, TouchEvent as ReactTouchEvent } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { Power, GripVertical } from "lucide-react";
+import { Power, GripVertical, Info } from "lucide-react";
 
 export function LightComparison() {
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -44,9 +44,9 @@ export function LightComparison() {
   };
 
   return (
-    <section id="performance" className="bg-black py-24 md:py-32 overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6 mb-16 text-center max-w-3xl">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-tight text-white mb-6">
+    <section id="performance" className="bg-black section-padding overflow-hidden">
+      <div className="section-container mb-16 text-center max-w-3xl">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl mb-6">
           Visibility when the day runs out
         </h2>
         <p className="text-lg text-muted-foreground mb-8">
@@ -66,7 +66,7 @@ export function LightComparison() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="section-container">
         <div 
           ref={containerRef}
           className="relative w-full max-w-5xl mx-auto rounded-xl overflow-hidden select-none cursor-ew-resize border border-border bg-black"
@@ -158,17 +158,12 @@ export function LightComparison() {
             </span>
           </div>
         </div>
+        <p className="text-center text-xs text-muted-foreground mt-4 max-w-2xl mx-auto">
+          * Representative beam visualisation. Actual output may vary based on mounting height, angle and environmental conditions.
+        </p>
       </div>
     </section>
   );
 }
 
-function Info({ size, className }: { size: number, className?: string }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-      <circle cx="12" cy="12" r="10"/>
-      <path d="M12 16v-4"/>
-      <path d="M12 8h.01"/>
-    </svg>
-  );
-}
+

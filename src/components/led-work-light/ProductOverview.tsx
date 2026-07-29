@@ -3,7 +3,6 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
-import { cn } from "@/lib/utils";
 import { Check, ShieldCheck, Truck } from "lucide-react";
 
 export function ProductOverview() {
@@ -35,8 +34,8 @@ export function ProductOverview() {
   };
 
   return (
-    <section className="bg-secondary py-24 md:py-32 relative z-10">
-      <div className="container mx-auto px-4 md:px-6">
+    <section className="bg-secondary section-padding relative z-10">
+      <div className="section-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           
           {/* Left Side: Product Visual */}
@@ -79,13 +78,13 @@ export function ProductOverview() {
 
           {/* Right Side: Product Details */}
           <div className="flex flex-col">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-tight text-white mb-6 leading-tight">
-              One light.<br/>
-              <span className="text-muted-foreground">Built as a complete system.</span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl mb-6 leading-tight">
+              Includes the light.<br/>
+              <span className="text-muted-foreground">And the mounting hardware.</span>
             </h2>
             
             <p className="text-lg text-muted-foreground mb-8">
-              The work light, adjustable bracket, and ROPS mounting hardware are designed as one integrated setup for practical tractor installation.
+              Includes the light, standard mounting bracket and mounting hardware. Wiring harness sold separately.
             </p>
             
             <div className="flex flex-wrap gap-3 mb-10">
@@ -108,13 +107,29 @@ export function ProductOverview() {
                 </div>
               </div>
               
+              <div className="mb-6 pb-6 border-b border-border/50">
+                <h4 className="text-foreground font-bold uppercase tracking-wide text-sm mb-3">What&apos;s Included</h4>
+                <ul className="text-sm text-muted-foreground space-y-2">
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary" /> <span className="text-foreground font-medium">Included:</span> LED work light, standard mounting bracket, mounting hardware</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-border" /> <span className="text-muted-foreground">Sold separately:</span> Wiring harness, switch, relay, fuse</li>
+                </ul>
+              </div>
+
+              <div className="mb-6 pb-6 border-b border-border/50">
+                <h4 className="text-foreground font-bold uppercase tracking-wide text-sm mb-3">Compatibility</h4>
+                <ul className="text-sm text-muted-foreground space-y-2">
+                  <li><strong>Voltage:</strong> 10–30V DC</li>
+                  <li><strong>Mounting:</strong> U-Bolt fits standard rectangular ROPS (2.5×5 cm to 5×7.5 cm)</li>
+                </ul>
+              </div>
+              
               <div className="flex gap-4 mb-6">
                 <div className="w-24 border border-border rounded-sm flex items-center justify-between px-3 py-2 bg-background">
-                  <button className="text-muted-foreground hover:text-white">-</button>
-                  <span className="text-white font-bold">1</span>
-                  <button className="text-muted-foreground hover:text-white">+</button>
+                  <button className="text-muted-foreground hover:text-foreground">-</button>
+                  <span className="text-foreground font-bold">1</span>
+                  <button className="text-muted-foreground hover:text-foreground">+</button>
                 </div>
-                <button className="flex-1 bg-primary hover:bg-primary/90 text-white rounded-sm font-bold uppercase tracking-wider transition-colors flex items-center justify-center">
+                <button className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground rounded-sm font-bold uppercase tracking-wider transition-colors flex items-center justify-center">
                   Add to Cart
                 </button>
               </div>

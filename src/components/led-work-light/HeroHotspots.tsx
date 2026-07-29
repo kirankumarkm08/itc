@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Hotspot, heroHotspots } from "@/data/led-work-light";
+import { heroHotspots } from "@/data/led-work-light";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
